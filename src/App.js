@@ -3,6 +3,15 @@ import {Api} from './api/index';
 import {CREATE_COMMENT_URL, GET_ALL_COMMENTS_URL} from './constants/Constants';
 import CommentsList from './components/comments/CommentsList';
 import CreateCommentContainer from './components/comments/CreateCommentContainer';
+import styled from 'styled-components';
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+`;
 
 function App() {
   const [comments, setComments] = useState([]);
