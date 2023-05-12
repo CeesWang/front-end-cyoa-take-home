@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
 const DataAccessObject = require('./dataAccessObject');
 const Comment = require('./comment');
@@ -9,6 +10,10 @@ const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({
+  origin: '*',
+  optionsSuccessStatus: 200
+}));
 
 const dataAccessObject = new DataAccessObject('./database.sqlite3');
 const comment = new Comment(dataAccessObject);
@@ -20,6 +25,7 @@ comment.createTable().catch(error => {
 app.post('/createComment', function(request, response) {
   const { body } = request;
   comment.createComment(body).then(result => {
+    console.log(result);
     response.send(result);
   });
 });
@@ -45,7 +51,6 @@ app.delete('/deleteComments', function(request, response) {
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html

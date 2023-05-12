@@ -19,10 +19,8 @@ class Comment {
   }
 
   createComment({ name, message }) {
-    return this.dataAccessObject.run(
-      'INSERT INTO comments (name, message) VALUES (?, ?)',
-      [name, message]
-    );
+  return this.dataAccessObject.run('INSERT INTO comments (name, message) VALUES (?, ?)', [name, message])
+    .then(result => this.getComment(result.id));
   }
 
   getComment(id) {
