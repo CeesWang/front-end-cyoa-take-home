@@ -7,13 +7,11 @@ const CommentListContainer = styled.div`
     margin-top: 10px;
     overflow-y: auto;
 `;
-    
 const CommentList = styled.div`
     display: flex;
     flex-direction: column-reverse;
     flex: 1;
 `;
-    
 const Comment = styled.div`
     border: 5px solid;
     border-width: medium;
@@ -21,14 +19,11 @@ const Comment = styled.div`
     padding: 5px;
     width: 30vw;
 `;
-
 const CommentMessage = styled.div`
     margin-bottom: 5px;
 `;
 
-function CommentsList({comments}) {  
-  console.log(comments);
-  
+export default function CommentsList({comments}) {    
   return (
     <CommentListContainer>
         <CommentList>
@@ -45,5 +40,3 @@ function CommentsList({comments}) {
     </CommentListContainer>
   );
 }
-
-export default CommentsList;

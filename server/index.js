@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
-
+const expressWebsocket = require('express-ws');
 const DataAccessObject = require('./dataAccessObject');
 const Comment = require('./comment');
 
 const app = express();
+const websocket = expressWebsocket(app);
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
@@ -22,10 +23,21 @@ comment.createTable().catch(error => {
   console.log(`Error: ${JSON.stringify(error)}`);
 });
 
+app.ws('/websocket', function(ws, req) {
+  console.log('WebSocket connection established');
+});
+
 app.post('/createComment', function(request, response) {
   const { body } = request;
   comment.createComment(body).then(result => {
-    console.log(result);
+    // console.log("DOES THIS WORK" ,result);
+    const clients  = websocket.getWss().clients;
+    // console.log(clients);
+    websocket.getWss().clients.forEach((client) => {
+      if (client.readyState === client.OPEN) {
+        client.send(JSON.stringify(result));
+      }
+    });
     response.send(result);
   });
 });

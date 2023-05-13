@@ -7,7 +7,7 @@ export const getTimeNowInDateFormat = () => {
     return jsDate.toISOString().slice(0, 19).replace('T', ' ');
 }
 
-// Weekday, Month Day, Year, Hour:Minute am/pm
+// Weekday, Month Day, Year, Hour:Minute am/pm, ex: Friday, May 12, 2023 at 3:32 AM
 export const convertDateTimeToString = (dateTime) => {
     const date = new Date(dateTime);
     const timezoneOffset = date.getTimezoneOffset() * 60 * 1000;

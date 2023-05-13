@@ -22,7 +22,7 @@ const MessageInputField = styled.textarea`
     resize: none;
 `;
 
-function CreateCommentContainer({postComment}) {
+export default function CreateCommentContainer({postComment}) {
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
     const handleNameChange = (event) => {
@@ -44,5 +44,3 @@ function CreateCommentContainer({postComment}) {
         </CommentContainer>
     );
 }
-
-export default CreateCommentContainer;
