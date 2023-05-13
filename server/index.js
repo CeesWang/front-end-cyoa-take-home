@@ -30,9 +30,7 @@ app.ws('/websocket', function(ws, req) {
 app.post('/createComment', function(request, response) {
   const { body } = request;
   comment.createComment(body).then(result => {
-    // console.log("DOES THIS WORK" ,result);
     const clients  = websocket.getWss().clients;
-    // console.log(clients);
     websocket.getWss().clients.forEach((client) => {
       if (client.readyState === client.OPEN) {
         client.send(JSON.stringify(result));

@@ -7,9 +7,9 @@ import styled from 'styled-components';
 import useWebSocket from 'react-use-websocket';
 
 const AppContainer = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   min-height: 100vh;
   min-width: 100vw;
 `;

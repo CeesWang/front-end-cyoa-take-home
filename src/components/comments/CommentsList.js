@@ -9,8 +9,8 @@ const CommentListContainer = styled.div`
 `;
 const CommentList = styled.div`
     display: flex;
-    flex-direction: column-reverse;
     flex: 1;
+    flex-direction: column-reverse;
 `;
 const Comment = styled.div`
     border: 5px solid;
@@ -30,7 +30,7 @@ export default function CommentsList({comments}) {
         {comments.map(comment => {
             const {id, name, message, created} = comment;        
             return (
-                <Comment key={id}>
+                <Comment data-testid={`comment ${id}` } key={id}>
                     <CommentMessage>{message}</CommentMessage>  
                     <div>{`${name} on ${convertDateTimeToString(created)}`}</div>  
                 </Comment>
